@@ -10,7 +10,7 @@ cd build
 MAJOR_VERSION=$(krunner --version | sed 's/[^0-9.]*//g' | cut -d'.' -f1)
 
 if [ "$MAJOR_VERSION" -eq 6 ]; then
-    cmake .. -DQT_MAJOR_VERSION=6 -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
+    cmake .. -DQT_MAJOR_VERSION=6 -DCMAKE_INSTALL_PREFIX=`kf6-config --prefix` -DCMAKE_BUILD_TYPE=Release
 elif [ "$MAJOR_VERSION" -eq 5 ]; then
     cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_INSTALL_PREFIX=`kf5-config --prefix` -DCMAKE_BUILD_TYPE=Release
 else
