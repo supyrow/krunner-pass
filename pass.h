@@ -15,12 +15,9 @@
  *  along with this library; see the file LICENSE.                            *
  *  If not, see <http://www.gnu.org/licenses/>.                               *
  *****************************************************************************/
-
 #ifndef PASS_H
 #define PASS_H
 
-
-//#include <KRunner/krunner_version.h> not found on kde ci
 #include <KRunner/AbstractRunner>
 
 namespace KRunner {
@@ -55,8 +52,7 @@ public:
 #endif
 
     void reloadConfiguration() override;
-    
-    
+
 public Q_SLOTS:
     void reinitPasswords(const QString &path);
 
@@ -71,16 +67,17 @@ private:
     int timeout;
     QReadWriteLock lock;
     QList<QString> passwords;
-    QFileSystemWatcher watcher;
-    
-    bool showActions;
+
+
+    QFileSystemWatcher *watcher = nullptr;
+
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QList<QAction *> orderedActions;
 #else
-    QList<KRunner::Action *> orderedActions;
+    QList<KRunner::Action> orderedActions;
 #endif
 
-    const QRegularExpression queryPrefix = QRegularExpression("^pass( .+)?$");
+    const QRegularExpression queryPrefix = QRegularExpression(QStringLiteral("^pass( .+)?$"));
 };
 
 #endif

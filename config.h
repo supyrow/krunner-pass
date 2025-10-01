@@ -1,4 +1,4 @@
- /******************************************************************************
+/******************************************************************************
  *  Copyright (C) 2017 by Lukas Fürmetz <fuermetz@mailbox.org>                *
  *                                                                            *
  *  This library is free software; you can redistribute it and/or modify      *
@@ -15,7 +15,6 @@
  *  along with this library; see the file LICENSE.                            *
  *  If not, see <http://www.gnu.org/licenses/>.                               *
  *****************************************************************************/
-
 #ifndef CONFIG_H
 #define CONFIG_H
 
@@ -23,8 +22,11 @@
 #include <KCModule>
 #include <KConfigGroup>
 
+class QListWidgetItem;
 
 struct Config {
+    constexpr static const char *triggerWord = "triggerWord";
+    constexpr static const char *enableOtp = "enableOtpAction";
     constexpr static const char *showActions = "showAdditionalActions";
     constexpr static const char *showFileContentAction = "showFullFileContentAction";
     struct Group {
@@ -37,27 +39,22 @@ struct Config {
     };
 };
 
-
 struct PassAction {
     QString name, icon, regex;
-
-    void writeToConfig(KConfigGroup &group)
-    {
+    void writeToConfig(KConfigGroup &group) {
         group.writeEntry(Config::Entry::Name, name);
         group.writeEntry(Config::Entry::Icon, icon);
         group.writeEntry(Config::Entry::Regex, regex);
     }
-
-    static PassAction fromConfig(const KConfigGroup &group)
-    {
+    static PassAction fromConfig(const KConfigGroup &group) {
         PassAction action;
         action.name = group.readEntry(Config::Entry::Name);
         action.icon = group.readEntry(Config::Entry::Icon);
         action.regex = group.readEntry(Config::Entry::Regex);
-
         return action;
     }
-}; Q_DECLARE_METATYPE(PassAction)
+};
+Q_DECLARE_METATYPE(PassAction)
 
 
 class PassConfigForm : public QWidget, public Ui::PassConfigUi
@@ -69,16 +66,21 @@ public:
 
     void addPassAction(const QString &, const QString &, const QString &, bool isNew = true);
     void clearPassActions();
-    void clearInputs();
+    void clearInputsAndResetButton();
 
     QVector<PassAction> passActions();
+
+public Q_SLOTS:
+    void updateUiState();
 
 signals:
     void passActionRemoved();
     void passActionAdded();
+    void passActionUpdated();
 
 private slots:
     void validateAddButton();
+    void on_listSavedActions_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
 };
 
 
@@ -99,6 +101,4 @@ public Q_SLOTS:
 private:
     PassConfigForm *ui;
 };
-
-
 #endif
