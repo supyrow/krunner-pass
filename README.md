@@ -63,7 +63,7 @@ $ ./install.sh
 ```
 Manual Build
 
-The instructions below are for advanced users. Note that they differ for KF5 and KF6 systems.
+The instructions below are for ...  you know who you are. Note that they differ for KF5 and KF6 systems.
 For KF6 / Plasma 6:
 ```
 $ mkdir -p build && cd build
@@ -79,6 +79,8 @@ $ make
 ```
 Dependencies:
 The dependency lists below are for KF5. For a KF6 build, you will need the equivalent kf6- and qt6- packages (e.g., libkf6runner-dev, qt6-base-dev).
+
+
 For debian (>=9) you will need the following build dependencies:
 ```
 apt-get install build-essential cmake extra-cmake-modules gettext \
@@ -92,7 +94,6 @@ apt-get install build-essential cmake extra-cmake-modules gettext \
 ```
 
 For Fedora (>=23) you will need the following build dependencies:
-
 ```
 dnf install @development-tools cmake extra-cmake-modules gettext \
    qt5-qtdeclarative-devel \
