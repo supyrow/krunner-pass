@@ -27,7 +27,7 @@ To create an action that copies `my.email@gmail.com`:
 4.  Click **"Add"**, then **"Apply"**.
 5.  Restart the plugin (uncheck and re-check it in the settings list).
 
-Now, when you search for `pass google.com`, you can right-click the result and select "Copy Username" to copy your email to the clipboard. The text inside the `()` in the RegEx is what gets copied.
+Now, when you search for `pass google.com`, you can highlight result and select "Copy Username" to copy your email to the clipboard. The text inside the `()` in the RegEx is what gets copied.
 <br>
 <hr>
 <img width="1242" height="242" alt="Plasma_Search__System_Settings" src="https://github.com/user-attachments/assets/0d714a2b-ee87-4821-a7f2-f7db576ca236" />
