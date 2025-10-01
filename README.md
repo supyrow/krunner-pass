@@ -67,7 +67,7 @@ The instructions below are for advanced users. Note that they differ for KF5 and
 For KF6 / Plasma 6:
 ```
 $ mkdir -p build && cd build
-$ cmake .. -DQT_MAJOR_VERSION=6 -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
+$ cmake .. -DQT_MAJOR_VERSION=6 -DCMAKE_INSTALL_PREFIX=`kf6-config --prefix` -DCMAKE_BUILD_TYPE=Release
 $ make
 ```
 For KF5 / Plasma 5 (Original Instructions):
